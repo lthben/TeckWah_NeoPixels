@@ -329,9 +329,9 @@ void setup() {
   Strip2.begin();
   Strip3.begin();
 
-  Strip1.TheaterChase( Strip1.Color(255,0,0), Strip1.Color(0,255,0), 10);
+  Strip1.TheaterChase( Strip1.Color(255,0,0), Strip1.Color(0,255,0), 30);
   Strip2.Fade( Strip2.Color(255,0,0), Strip2.Color(0,255,0), 100, 50);
-  Strip3.Scanner( Strip3.Color(255,0,0), 20 );
+  Strip3.Scanner( Strip3.Color(255,0,0), 2 );
 }
 
 //-------------------------
@@ -389,7 +389,7 @@ void read_from_serial() {
 
 void Strip1Complete() {
   Serial.println("strip 1 complete");
-  Strip1.Reverse();
+  Strip1.Color2 = Strip1.Color(0,0,255);
 }
 
 void Strip2Complete() {
