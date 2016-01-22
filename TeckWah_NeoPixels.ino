@@ -1,5 +1,5 @@
 /* Author: Benjamin Low
- * Last updated: 11 Nov 2015
+ * Last updated: 16 Dec 2015
  * Description: Prototype for Teck Wah gallery NeoPixels.
  *
  *   NEO_KHZ800  800 KHz bitstream (most NeoPixel products w/WS2812 LEDs)
@@ -315,9 +315,9 @@ void Strip3Complete();
 // -----------------------------
 // Object declarations
 // -----------------------------
-NeoPatterns Strip1(300, 2, NEO_GRB + NEO_KHZ800, &Strip1Complete);
-NeoPatterns Strip2(300, 4, NEO_GRB + NEO_KHZ800, &Strip2Complete);
-NeoPatterns Strip3(300, 6, NEO_GRB + NEO_KHZ800, &Strip3Complete);
+  NeoPatterns Strip1(300, 2, NEO_GRB + NEO_KHZ800, &Strip1Complete);
+//NeoPatterns Strip2(300, 4, NEO_GRB + NEO_KHZ800, &Strip2Complete);
+//NeoPatterns Strip3(300, 6, NEO_GRB + NEO_KHZ800, &Strip3Complete);
 
 //------------------------------
 // setup
@@ -326,12 +326,14 @@ void setup() {
   Serial.begin(9600);
 
   Strip1.begin();
-  Strip2.begin();
-  Strip3.begin();
+//  Strip2.begin();
+//  Strip3.begin();
 
-  Strip1.TheaterChase( Strip1.Color(255,0,0), Strip1.Color(0,255,0), 30);
-  Strip2.Fade( Strip2.Color(255,0,0), Strip2.Color(0,255,0), 100, 50);
-  Strip3.Scanner( Strip3.Color(255,0,0), 2 );
+//  Strip1.TheaterChase( Strip1.Color(255,0,0), Strip1.Color(0,255,0), 30);
+//    Strip1.ColorWipe( Strip1.Color(127,0,0), 2 );
+//    Strip1.ColorSet( Strip1.Color(127,127,127) );
+Strip1.Fade( Strip1.Color(255,0,0), Strip1.Color(0,255,0), 100, 50);
+//  Strip1.Scanner( Strip1.Color(255,0,0), 2 );
 }
 
 //-------------------------
@@ -341,8 +343,8 @@ void setup() {
 void loop() {
 
   Strip1.Update();
-  Strip2.Update();
-  Strip3.Update();
+//  Strip2.Update();
+//  Strip3.Update();
   
   read_from_serial();
 }
@@ -367,18 +369,18 @@ void read_from_serial() {
       
     } else if (incomingbyte == '2') {
         Serial.println("strip 2 set to blue");
-        Strip2.Color1 = Strip2.Color(0,0,255);
+//        Strip2.Color1 = Strip2.Color(0,0,255);
       
     } else if (incomingbyte == '3') {
         Serial.println("strip 2 set back to red");
-        Strip2.Color1 = Strip2.Color(255,0,0);
+//        Strip2.Color1 = Strip2.Color(255,0,0);
       
     } else if (incomingbyte == '4') {
         Serial.println("strip 3 colorwipe green");
-        Strip3.ColorWipe( Strip3.Color(0,255,0), 20 );
+//        Strip3.ColorWipe( Strip3.Color(0,255,0), 20 );
     } else if (incomingbyte == '5') {
         Serial.println("strip 3 colorwipe blue");
-        Strip3.ColorWipe( Strip3.Color(0,0,255), 20);
+//        Strip3.ColorWipe( Strip3.Color(0,0,255), 20);
     }
   }
 }
